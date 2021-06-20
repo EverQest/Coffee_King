@@ -1,69 +1,42 @@
-const products_page = document.querySelectorAll('.products');
-for (let i = 0; i < products_page.length; i++) {
-  products_page[i].onclick = page_render_products;
-}
+const js_push = document.getElementsByClassName("js_push")[0];
+const js_push_header = document.getElementsByClassName("js_push_header")[0];
+function all_render_on_page(){
 
 // Страница Продукции!!!
 
-function page_render_products() {
-  document.body.innerHTML = `<header class="header">
-    <div class="container">
-      <ul class="menu">
-        <li>
-          <a href="./index.html"
-            ><img src="./imgs/logo_white-7.png" alt="logo"
-          /></a>
-        </li>
-        <li class="li_menu_before">
-          <a id="home" href="./index.html">Домой</a>
-        </li>
-        <li class="li_menu_before">
-          <a class="about">О нас</a>
-        </li>
-        <li class="li_menu_before"><a class="blog">Блог</a></li>
-        <li class="li_menu_before">
-          <a class="products">Товары</a>
-        </li>
-        <li class="li_menu_before">
-          <a class="form">Вход</a>
-        </li>
-        <li class="search_header">
-          <a href="#">
-            <img
-              class="img_header"
-              src="./imgs/search-solid.svg"
-              alt="search"
-            />
-          </a>
-        </li>
-      </ul>
-    </div>
+function page_render_products_header() {
+  js_push_header.innerHTML = `
 
+         <div class="filter">
 
-    <div class="filter">
         <button class="button_filter button_type_all" data-filter="all">
           Все товары
         </button>
+
         <button class="button_filter button_type_coffee" data-filter="coffee">
           Кофе
         </button>
+
         <button class="button_filter button_type_tea" data-filter="tea">
           Чай
         </button>
+
         <button class="button_filter button_type_eq" data-filter="eq">
           Техника
         </button>
+
         <button
           class="button_filter button_type_accessories"
           data-filter="accessories"
         >
           Аксессуары
-        </button>
       </div>
+      `
 
-
-  </header>
-    
+function page_render_products(){
+  js_push.innerHTML = `
+  <div class="js_push">
+  <main>
     <div class="bg_prod">
     <div class="products_wrap">
       <section>
@@ -94,8 +67,6 @@ function page_render_products() {
               </div>
             </div>`;
             });
-          
-          
           }
           
           renderItems(prod_list);
@@ -106,59 +77,14 @@ function page_render_products() {
       </section>
     </div>
     </div>
-    <div class="before_footer">Like-themes © All Rights Reserved - 2020</div> 
-    
-    <footer>
-    <div class="footer">
-      <div class="container">
-        <div class="grid">
-          <div class="content_1">
-            <img src="./imgs/logo_white-7.png" alt="logo" />
-          </div>
-          <div class="content_2">Меню</div>
-          <div class="content_3">Контакты</div>
-          <div class="content_4">
-            Pellentesque congue non augue vitae pellentesque. Morbi
-            sollicitudin eleifend rhoncus. Mauris vel nisl a massa viverra
-            sollicitudin semper a diam.
-          </div>
-          <div class="content_5">
-            <div>
-              <a href="#">Домой</a>
-            </div>
-            <div>
-              <a href="#">Связатся с нами</a>
-            </div>
-            <div>
-              <a href="#">Изделия</a>
-            </div>
-            <div>
-              <a href="#">Блог</a>
-            </div>
-            <div>
-              <a href="#">Про нас</a>
-            </div>
-            <div>
-              <a href="#"> Галерея</a>
-            </div>
-          </div>
-
-          <div class="content_6">
-            <span class="brown">4Б Героев Ст., Днепр, Украина</span><br />
-            <span>+10800-33-800; +10500-55-900</span><br />
-            <span class="brown">mycoffee@mycoffeeshop.com</span><br />
-            <span>mycoffeeshop</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+    <div class="before_footer">Like-themes © All Rights Reserved - 2020</div>
+    </main>
+    </div> 
     `;
-// Фильтр кнопок!!!
+            // Фильтр кнопок!!!
+
 const buttons = document.querySelectorAll(".button_filter")
 const arr_prod = document.querySelectorAll(".coffee_items")
-
-console.log(arr_prod);
 
 function filter_app(){
 
@@ -178,17 +104,10 @@ buttons.forEach((button)=> {
   button.addEventListener("click", () => {
     const current_category = button.dataset.filter;
     filter(current_category, arr_prod)
-    console.log(current_category)
   })
 })
 }
 filter_app();
-
-
-  const about_page = document.querySelector('.about');
-  about_page.onclick = page_render_about;
-  const form_page = document.querySelector('.form');
-  form_page.onclick = page_render_form;
 
   document.querySelectorAll('.add_to_buy').forEach((btn) => {
     btn.onclick = product_render.bind(null, btn.dataset.id);
@@ -196,52 +115,18 @@ filter_app();
       product_render(btn);
     }; */
   });
-}
-
+ }
+ page_render_products()
+ }
 
 //Рендер покупки товара
 
 function product_render(id) {
-   console.log(id);
-  //  console.log(prod_list);
   const drink = prod_list.find((el) => el.id === Number(id));
-  console.log(drink);
-  document.body.innerHTML = `
-<body>
-<header class="header">
-<div class="container">
-<ul class="menu">
-  <li>
-    <a href="./index.html"
-      ><img src="./imgs/logo_white-7.png" alt="logo"
-    /></a>
-  </li>
-  <li class="li_menu_before">
-    <a id="home" href="./index.html">Домой</a>
-  </li>
-  <li class="li_menu_before">
-    <a class="about">О нас</a>
-  </li>
-  <li class="li_menu_before"><a class="blog">Блог</a></li>
-  <li class="li_menu_before">
-    <a class="products">Товары</a>
-  </li>
-  <li class="li_menu_before">
-    <a class="form">Вход</a>
-  </li>
-  <li class="search_header">
-    <a href="#">
-      <img
-        class="img_header"
-        src="./imgs/search-solid.svg"
-        alt="search"
-      />
-    </a>
-  </li>
-</ul>
-</div>
-</header>
-
+  js_push_header.innerHTML = ` `
+  js_push.innerHTML = `
+<div class="js_push">
+  <main>
   <div class="bg_prod">
     <div class="products_wrap">
       <section>
@@ -267,111 +152,27 @@ function product_render(id) {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+          <div class="flex_btn"><a class="back">< К товарам</a></div>
       </section>
     </div>
   </div>
   <div class="before_footer">Like-themes © All Rights Reserved - 2020</div>
-
-  <footer>
-  <div class="footer">
-    <div class="container">
-      <div class="grid">
-        <div class="content_1">
-          <img src="./imgs/logo_white-7.png" alt="logo" />
-        </div>
-        <div class="content_2">Меню</div>
-        <div class="content_3">Контакты</div>
-        <div class="content_4">
-          Pellentesque congue non augue vitae pellentesque. Morbi
-          sollicitudin eleifend rhoncus. Mauris vel nisl a massa viverra
-          sollicitudin semper a diam.
-        </div>
-        <div class="content_5">
-          <div>
-            <a href="#">Домой</a>
-          </div>
-          <div>
-            <a href="#">Связатся с нами</a>
-          </div>
-          <div>
-            <a href="#">Изделия</a>
-          </div>
-          <div>
-            <a href="#">Блог</a>
-          </div>
-          <div>
-            <a href="#">Про нас</a>
-          </div>
-          <div>
-            <a href="#"> Галерея</a>
-          </div>
-        </div>
-
-        <div class="content_6">
-          <span class="brown">4Б Героев Ст., Днепр, Украина</span><br />
-          <span>+10800-33-800; +10500-55-900</span><br />
-          <span class="brown">mycoffee@mycoffeeshop.com</span><br />
-          <span>mycoffeeshop</span>
-        </div>
-      </div>
-    </div>
+  </main>
   </div>
-</footer>
-</body>
-`;
-
-const about_page = document.querySelector('.about');
-about_page.onclick = page_render_about;
-const form_page = document.querySelector('.form');
-form_page.onclick = page_render_form;
-const products_page = document.querySelectorAll('.products');
-for (let i = 0; i < products_page.length; i++) {
-  products_page[i].onclick = page_render_products;
-}
+`
+const back_btn = document.getElementsByClassName("back")[0];
+back_btn.onclick = page_render_products_header;
 }
 
 // Страница О нас!!!
-const about_page = document.querySelector('.about');
-about_page.onclick = page_render_about;
+
 
 function page_render_about() {
-  document.body.innerHTML = `
-  <header class="header">
-  <div class="container">
-    <ul class="menu">
-      <li>
-        <a href="./index.html"
-          ><img src="./imgs/logo_white-7.png" alt="logo"
-        /></a>
-      </li>
-      <li class="li_menu_before">
-        <a id="home" href="./index.html">Домой</a>
-      </li>
-      <li class="li_menu_before">
-        <a class="about">О нас</a>
-      </li>
-      <li class="li_menu_before"><a class="blog">Блог</a></li>
-      <li class="li_menu_before">
-        <a class="products">Товары</a>
-      </li>
-      <li class="li_menu_before">
-        <a class="form">Вход</a>
-      </li>
-      <li class="search_header">
-        <a href="#">
-          <img
-            class="img_header"
-            src="./imgs/search-solid.svg"
-            alt="search"
-          />
-        </a>
-      </li>
-    </ul>
-  </div>
-</header>
-
-
+  js_push_header.innerHTML = ` `
+  js_push.innerHTML = `
+  <div class="js_push">
+  <main>
     <div class="map_container">
       <div class="container">
         <section>
@@ -475,103 +276,18 @@ function page_render_about() {
       </div>
     </div>
     <div class="before_footer">Like-themes © All Rights Reserved - 2020</div>
-    
-    
-    <footer>
-    <div class="footer">
-      <div class="container">
-        <div class="grid">
-          <div class="content_1">
-            <img src="./imgs/logo_white-7.png" alt="logo" />
-          </div>
-          <div class="content_2">Меню</div>
-          <div class="content_3">Контакты</div>
-          <div class="content_4">
-            Pellentesque congue non augue vitae pellentesque. Morbi
-            sollicitudin eleifend rhoncus. Mauris vel nisl a massa viverra
-            sollicitudin semper a diam.
-          </div>
-          <div class="content_5">
-            <div>
-              <a href="#">Домой</a>
-            </div>
-            <div>
-              <a href="#">Связатся с нами</a>
-            </div>
-            <div>
-              <a href="#">Изделия</a>
-            </div>
-            <div>
-              <a href="#">Блог</a>
-            </div>
-            <div>
-              <a href="#">Про нас</a>
-            </div>
-            <div>
-              <a href="#"> Галерея</a>
-            </div>
-          </div>
-
-          <div class="content_6">
-            <span class="brown">4Б Героев Ст., Днепр, Украина</span><br />
-            <span>+10800-33-800; +10500-55-900</span><br />
-            <span class="brown">mycoffee@mycoffeeshop.com</span><br />
-            <span>mycoffeeshop</span>
-          </div>
-        </div>
-      </div>
+    </main>
     </div>
-  </footer>
       `;
-  const products_page = document.querySelectorAll('.products');
-  for (let i = 0; i < products_page.length; i++) {
-    products_page[i].onclick = page_render_products;
-  }
-  const form_page = document.querySelector('.form');
-  form_page.onclick = page_render_form;
 }
 
 //Страница Формы!!!
 
-const form_page = document.querySelector('.form');
-form_page.onclick = page_render_form;
-
 function page_render_form() {
-  document.body.innerHTML = `
-  <header class="header">
-  <div class="container">
-    <ul class="menu">
-      <li>
-        <a href="./index.html"
-          ><img src="./imgs/logo_white-7.png" alt="logo"
-        /></a>
-      </li>
-      <li class="li_menu_before">
-        <a id="home" href="./index.html">Домой</a>
-      </li>
-      <li class="li_menu_before">
-        <a class="about">О нас</a>
-      </li>
-      <li class="li_menu_before"><a class="blog">Блог</a></li>
-      <li class="li_menu_before">
-        <a class="products">Товары</a>
-      </li>
-      <li class="li_menu_before">
-        <a class="form">Вход</a>
-      </li>
-      <li class="search_header">
-        <a href="#">
-          <img
-            class="img_header"
-            src="./imgs/search-solid.svg"
-            alt="search"
-          />
-        </a>
-      </li>
-    </ul>
-  </div>
-</header>
-
+  js_push_header.innerHTML = ` `
+  js_push.innerHTML = `
+  <div class="js_push">
+  <main>
 <div class="container_form">
       <div class="form_wrap">
         <form class="transparent">
@@ -590,64 +306,11 @@ function page_render_form() {
       </div>
     </div>
     <div class="before_footer">Like-themes © All Rights Reserved - 2020</div>
-    
-    <footer>
-    <div class="footer">
-      <div class="container">
-        <div class="grid">
-          <div class="content_1">
-            <img src="./imgs/logo_white-7.png" alt="logo" />
-          </div>
-          <div class="content_2">Меню</div>
-          <div class="content_3">Контакты</div>
-          <div class="content_4">
-            Pellentesque congue non augue vitae pellentesque. Morbi
-            sollicitudin eleifend rhoncus. Mauris vel nisl a massa viverra
-            sollicitudin semper a diam.
-          </div>
-          <div class="content_5">
-            <div>
-              <a href="#">Домой</a>
-            </div>
-            <div>
-              <a href="#">Связатся с нами</a>
-            </div>
-            <div>
-              <a href="#">Изделия</a>
-            </div>
-            <div>
-              <a href="#">Блог</a>
-            </div>
-            <div>
-              <a href="#">Про нас</a>
-            </div>
-            <div>
-              <a href="#"> Галерея</a>
-            </div>
-          </div>
-
-          <div class="content_6">
-            <span class="brown">4Б Героев Ст., Днепр, Украина</span><br />
-            <span>+10800-33-800; +10500-55-900</span><br />
-            <span class="brown">mycoffee@mycoffeeshop.com</span><br />
-            <span>mycoffeeshop</span>
-          </div>
-        </div>
-      </div>
+    </main>
     </div>
-  </footer>
+    
+    
       `;
-  const products_page = document.querySelectorAll('.products');
-  for (let i = 0; i < products_page.length; i++) {
-    products_page[i].onclick = page_render_products;
-  }
-
-  const form_page = document.querySelector('.form');
-  form_page.onclick = page_render_form;
-
-  const about_page = document.querySelector('.about');
-  about_page.onclick = page_render_about;
-
   const form_page_register = document.getElementsByClassName('register_btn')[0];
   form_page_register.onclick = page_render_form_register;
 }
@@ -655,41 +318,10 @@ function page_render_form() {
 //регестрация!!!
 
 function page_render_form_register() {
-  document.body.innerHTML = `
-  <header class="header">
-  <div class="container">
-    <ul class="menu">
-      <li>
-        <a href="./index.html"
-          ><img src="./imgs/logo_white-7.png" alt="logo"
-        /></a>
-      </li>
-      <li class="li_menu_before">
-        <a id="home" href="./index.html">Домой</a>
-      </li>
-      <li class="li_menu_before">
-        <a class="about">О нас</a>
-      </li>
-      <li class="li_menu_before"><a class="blog">Блог</a></li>
-      <li class="li_menu_before">
-        <a class="products">Товары</a>
-      </li>
-      <li class="li_menu_before">
-        <a class="form">Вход</a>
-      </li>
-      <li class="search_header">
-        <a href="#">
-          <img
-            class="img_header"
-            src="./imgs/search-solid.svg"
-            alt="search"
-          />
-        </a>
-      </li>
-    </ul>
-  </div>
-</header>
-
+  js_push_header.innerHTML = ` `
+  js_push.innerHTML = `
+  <div class="js_push">
+  <main>
 <div class="container_form">
       <div class="form_wrap">
         <form class="transparent">
@@ -709,61 +341,25 @@ function page_render_form_register() {
       </div>
     </div>
     <div class="before_footer">Like-themes © All Rights Reserved - 2020</div>
-    
-    <footer>
-    <div class="footer">
-      <div class="container">
-        <div class="grid">
-          <div class="content_1">
-            <img src="./imgs/logo_white-7.png" alt="logo" />
-          </div>
-          <div class="content_2">Меню</div>
-          <div class="content_3">Контакты</div>
-          <div class="content_4">
-            Pellentesque congue non augue vitae pellentesque. Morbi
-            sollicitudin eleifend rhoncus. Mauris vel nisl a massa viverra
-            sollicitudin semper a diam.
-          </div>
-          <div class="content_5">
-            <div>
-              <a href="#">Домой</a>
-            </div>
-            <div>
-              <a href="#">Связатся с нами</a>
-            </div>
-            <div>
-              <a href="#">Изделия</a>
-            </div>
-            <div>
-              <a href="#">Блог</a>
-            </div>
-            <div>
-              <a href="#">Про нас</a>
-            </div>
-            <div>
-              <a href="#"> Галерея</a>
-            </div>
-          </div>
-
-          <div class="content_6">
-            <span class="brown">4Б Героев Ст., Днепр, Украина</span><br />
-            <span>+10800-33-800; +10500-55-900</span><br />
-            <span class="brown">mycoffee@mycoffeeshop.com</span><br />
-            <span>mycoffeeshop</span>
-          </div>
-        </div>
-      </div>
+    </main>
     </div>
-  </footer>
       `;
-  const products_page = document.querySelectorAll('.products');
-  for (let i = 0; i < products_page.length; i++) {
-    products_page[i].onclick = page_render_products;
-  }
-
-  const form_page = document.querySelector('.form');
-  form_page.onclick = page_render_form;
-
-  const about_page = document.querySelector('.about');
-  about_page.onclick = page_render_about;
 }
+
+
+          // Все подключения!!!
+
+const back_btn = document.getElementsByClassName("back")[0];
+
+const products_page = document.querySelectorAll('.products');
+for (let i = 0; i < products_page.length; i++) {
+  products_page[i].onclick = page_render_products_header;
+}
+const form_page = document.querySelector('.form');
+form_page.onclick = page_render_form;
+
+const about_page = document.querySelector('.about');
+about_page.onclick = page_render_about;
+}
+
+all_render_on_page();

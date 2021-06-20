@@ -1,4 +1,4 @@
-const prod_list= [
+const prod_list = [
     {
         id: 1,
         prodName_or_alt: "Кофейная канефора",

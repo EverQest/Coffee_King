@@ -499,8 +499,7 @@ div div p span::before {
 .products_wrap {
   display: flex;
   justify-content: center;
-  margin: 100px 100px 0px;
-  padding: 100px;
+  padding: 200px;
 }
 .bg_prod {
   background-color: rgb(223, 223, 223);
@@ -564,4 +563,14 @@ div div p span::before {
 }
 .hide {
   display: none;
+}
+.back {
+  color: white;
+  background-color: #c0aa83;
+  padding: 15px 20px;
+}
+.back:hover {
+  cursor: pointer;
+  background-color: black;
+  transition: 0.3s;
 }
